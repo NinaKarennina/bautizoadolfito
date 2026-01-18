@@ -273,7 +273,7 @@ body.modal-open{ overflow:hidden; touch-action:none; }
     // fd.append('token', '...'); // cuando agregues el secreto
 
     try{
-      await fetch("", { method:'POST', body: fd, mode:'no-cors' });
+      await fetch("https://script.google.com/macros/s/AKfycbw7sX5RplTerdEYWsiMvjYND2oecsw0S35WZQZxqJsL7cxuUQ45QPilDj9EInOi-0FB/exec", { method:'POST', body: fd, mode:'no-cors' });
       statusEl.textContent = '¡Registro enviado! 🎉';
       setTimeout(close, 900);
     }catch(err){
