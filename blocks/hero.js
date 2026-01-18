@@ -2,13 +2,20 @@
 export function createHeroBlock({
   background,
   // overlays predefinidos
-  topLeft, topRight, bottomLeft, bottomRight,
-  leftCenter, rightCenter, center, bottomCenter,
+  topLeft,
+  topRight,
+  bottomLeft,
+  bottomRight,
+  leftCenter,
+  rightCenter,
+  center,
+  topCenter,
+  bottomCenter,
   // overlays libres
   overlays = [],
   sizes = {},
-  bgSpeed = 0,        // 0 = sin parallax; 0.1–0.3 = suave
-  bgPosition = 0,     // 0..1 anclaje vertical del fondo (0=arriba, 1=abajo)
+  bgSpeed = 0, // 0 = sin parallax; 0.1–0.3 = suave
+  bgPosition = 0, // 0..1 anclaje vertical del fondo (0=arriba, 1=abajo)
   anims = {},
   centerNode = null,
 }) {
@@ -16,7 +23,7 @@ export function createHeroBlock({
     small = "40vmin",
     sideH = "33vh",
     centerH = "40vh",
-    bottomH = "28vh"
+    bottomH = "28vh",
   } = sizes;
 
   const section = document.createElement("section");
@@ -54,19 +61,59 @@ export function createHeroBlock({
   };
 
   // Esquinas
-  make("img-top-left",     topLeft,     "Decoración esquina izq sup", "topLeft");
-  make("img-top-right",    topRight,    "Decoración esquina der sup", "topRight");
-  make("img-bottom-left",  bottomLeft,  "Decoración esquina izq inf", "bottomLeft");
-  make("img-bottom-right", bottomRight, "Decoración esquina der inf", "bottomRight");
+  make("img-top-left", topLeft, "Decoración esquina izq sup", "topLeft");
+  make("img-top-right", topRight, "Decoración esquina der sup", "topRight");
+  make(
+    "img-bottom-left",
+    bottomLeft,
+    "Decoración esquina izq inf",
+    "bottomLeft",
+  );
+  make(
+    "img-bottom-right",
+    bottomRight,
+    "Decoración esquina der inf",
+    "bottomRight",
+  );
 
   // Laterales centrados
-  make("img-left-center",  leftCenter,  "Decoración lateral izq",  "leftCenter",  "translateY(-50%)");
-  make("img-right-center", rightCenter, "Decoración lateral der",  "rightCenter", "translateY(-50%)");
+  make(
+    "img-left-center",
+    leftCenter,
+    "Decoración lateral izq",
+    "leftCenter",
+    "translateY(-50%)",
+  );
+  make(
+    "img-right-center",
+    rightCenter,
+    "Decoración lateral der",
+    "rightCenter",
+    "translateY(-50%)",
+  );
 
   // Centro y abajo centro
-  make("img-center",        center,       "Decoración centro",        "center",       "translate(-50%, -50%)");
-  make("img-bottom-center", bottomCenter, "Decoración inferior",      "bottomCenter", "translateX(-50%)");
-
+  make(
+    "img-center",
+    center,
+    "Decoración centro",
+    "center",
+    "translate(-50%, -50%)",
+  );
+  make(
+    "img-bottom-center",
+    bottomCenter,
+    "Decoración inferior",
+    "bottomCenter",
+    "translateX(-50%)",
+  );
+  make(
+    "img-top-center",
+    topCenter,
+    "Decoración superior centrada",
+    "topCenter",
+    "translateX(-50%)",
+  );
   overlays.forEach(({ src, alt, pos = "center", delay }) => {
     const cls = posClass(pos);
     if (!cls) return;
@@ -80,11 +127,11 @@ export function createHeroBlock({
     section.appendChild(img);
   });
 
-   if (centerNode) {
+  if (centerNode) {
     const wrap = document.createElement("div");
     wrap.className = "center-node anim anim-fade-in";
     // Si quieres tamaño máximo desde fuera:
-    wrap.style.maxWidth  = "min(92vw, 720px)";
+    wrap.style.maxWidth = "min(92vw, 720px)";
     wrap.style.maxHeight = "70vh";
     wrap.appendChild(centerNode);
     section.appendChild(wrap);
@@ -94,24 +141,30 @@ export function createHeroBlock({
 }
 
 function posClass(pos) {
-  return ({
-    "top-left": "img-top-left",
-    "top-right": "img-top-right",
-    "bottom-left": "img-bottom-left",
-    "bottom-right": "img-bottom-right",
-    "left-center": "img-left-center",
-    "right-center": "img-right-center",
-    "center": "img-center",
-    "bottom-center": "img-bottom-center",
-  })[pos] || null;
+  return (
+    {
+      "top-left": "img-top-left",
+      "top-right": "img-top-right",
+      "bottom-left": "img-bottom-left",
+      "bottom-right": "img-bottom-right",
+      "left-center": "img-left-center",
+      "right-center": "img-right-center",
+      center: "img-center",
+      "bottom-center": "img-bottom-center",
+      "top-center": "img-top-center",
+    }[pos] || null
+  );
 }
 function baseTransformFor(pos) {
-  return ({
-    "left-center": "translateY(-50%)",
-    "right-center": "translateY(-50%)",
-    "center": "translate(-50%, -50%)",
-    "bottom-center": "translateX(-50%)",
-  })[pos] || null;
+  return (
+    {
+      "left-center": "translateY(-50%)",
+      "right-center": "translateY(-50%)",
+      center: "translate(-50%, -50%)",
+      "top-center": "translateX(-50%)",
+      "bottom-center": "translateX(-50%)",
+    }[pos] || null
+  );
 }
 
 // ====== Estilos (inyecta una sola vez) ======
@@ -266,6 +319,19 @@ if (!document.getElementById(styleId)) {
       max-height: 80vh;  /* para que no rebase */
       pointer-events:auto; /* por si el componente tiene botones */
     }
+    .hero-block .img-top-center {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  max-width: var(--device-w);
+  max-height: var(--center-h, 40vh);
+  object-fit: contain;
+  pointer-events: none;
+  z-index: -1;
+  --base-transform: translateX(-50%);
+  transform: var(--base-transform);
+}
+  
 
 
 

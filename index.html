@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>XV Sofi</title>
-  <link rel="icon" type="image/x-icon" href="./images/sofiicon.png" />
+  <title>Bautizo Adolfito</title>
+  <link rel="icon" type="image/x-icon" href="./images/icon.png" />
   <style>
     :root {
       /* Base “iPhone 14 Pro Max” (CSS px) con adaptación hacia abajo */
@@ -58,62 +58,105 @@
       countdown: (props) => createCountdown(props),
       // en el futuro puedes agregar otros
     };
-    const topHero = createSplitHero({
-  bgSrc: './images/sofititle.webp',
-  side: 'left',                 // 'left' o 'right'
-  sideSrc: './images/title.webp',
-  ratio: '16 / 9',               // ajusta libremente (p.ej. '3 / 2')
-  maxHeight: '70vh'              // opcional
-});
-app.prepend(topHero);
-const player = initAudioPlayer({
-  src: './images/sofi.mp3',
-  width: 'calc(var(--device-w, 430px) * 0.30)',
-  top: 15,
-  safeTopPx: 15,
-  followAnchor: topHero,   // o '.split-hero'
-  followMargin: 12,
-  fadeWhileFollowing: false,
-  fadeDistancePx: 160
-});
+    // const topHero = createSplitHero({
+    //   bgSrc: './images/sofititle.webp',
+    //   side: 'left',                 // 'left' o 'right'
+    //   sideSrc: './images/title.webp',
+    //   ratio: '16 / 9',               // ajusta libremente (p.ej. '3 / 2')
+    //   maxHeight: '70vh'              // opcional
+    // });
+    // app.prepend(topHero);
+    const player = initAudioPlayer({
+      src: './images/sofi.mp3',
+      width: 'calc(var(--device-w, 430px) * 0.30)',
+      top: 15,
+      safeTopPx: 15,
+      //followAnchor: topHero,   // o '.split-hero'
+      followMargin: 12,
+      fadeWhileFollowing: false,
+      fadeDistancePx: 160
+    });
 
     // Define tus bloques como datos (¡escalable!)
     const blocks = [
       {
-        // fondo ya no lo necesitamos, lo dejamos vacío o quitamos la propiedad
         background: '',
 
-        // overlays decorativos (se mantienen absolutos)
-        topLeft: './images/butterflieslefttop.webp',
-        topRight: './images/butterfliesrighttop.webp',
+        topCenter: './images/ballonscentertop.webp',
+        leftCenter:'./images/ballonscenterleft.webp',
+        rightCenter:'./images/ballonscenteright.webp',
 
-        // stack con la imagen principal
         stack3: {
           items: [
-            { kind: "html", html: "<div style='height:7vh'></div>" },
-            {
+          { kind: "html", html: "<div style='height:4vh'></div>" },  
+          {
               kind: "image",
-              src: "./images/main.webp",
+              src: "./images/main2.webp",
               alt: "Imagen principal",
               variant: "principal"   // 👈 ocupará ~70% del alto
+            },
+          {
+              kind: "image",
+              src: "./images/main3.webp",
+              alt: "Imagen principal",
+              variant: "wideText"   // 👈 ocupará ~70% del alto
+            },
+            {
+              kind: "image",
+              src: "./images/intro.webp",
+              alt: "Texto",
+              variant: "wideText"   // 👈 ocupará ~70% del alto
             }
           ]
         }
       },
       {
         background: '',                         // sin fondo
-        leftCenter: './images/butterfliesleftbig.webp', // decorativo lateral
-        rightCenter:'./images/butterflieright.webp',
+        leftCenter: './images/dateleftbottom.webp', // decorativo lateral
+        rightCenter: './images/dateright.webp',
+
         stack3: {
           gap: "10px",
           items: [
-            { kind: "image", src: "./images/church.webp", alt: "Cuadrada", variant: "square" },
+            {
+              kind: "image",
+              src: "./images/main.webp",
+              alt: "Imagen principal",
+              variant: "principal"   // 👈 ocupará ~70% del alto
+            },
+            // { kind: "image", src: "./images/church.webp", alt: "Cuadrada", variant: "square" },
+            // {
+            //   kind: "buttonImage",
+            //   src: "./images/mapbutton2.webp",
+            //   alt: "Iglesia",
+            //   variant: "wideText",
+            //   onClick: () => window.open('https://maps.app.goo.gl/9SKv1Xc23EsZLbDQ6', '_blank')
+            // }
+          ]
+        }
+      }
+      ,
+      {
+        background: '',                         // sin fondo
+        //leftCenter: './images/dateleftbottom.webp', // decorativo lateral
+        //rightCenter: './images/dateright.webp',
+
+        stack3: {
+          gap: "10px",
+          items: [
+            // {
+            //   kind: "image",
+            //   src: "./images/main.webp",
+            //   alt: "Imagen principal",
+            //   variant: "principal"   // 👈 ocupará ~70% del alto
+            // },
+            { kind: "image", src: "./images/churchnew.webp", alt: "Cuadrada", variant: "square" },
             {
               kind: "buttonImage",
               src: "./images/mapbutton2.webp",
               alt: "Iglesia",
               variant: "wideText",
-              onClick: () => window.open('https://maps.app.goo.gl/9SKv1Xc23EsZLbDQ6', '_blank')
+              onClick: () => window.open('https://maps.app.goo.gl/mBR7Jz2SZDgZwYuh7', '_blank')
             }
           ]
         }
@@ -122,8 +165,8 @@ const player = initAudioPlayer({
       {
         // sin fondo ni parallax
         background: '',
-        topLeft: './images/butterflielefttop.webp',
-        rightCenter: './images/butterfliesrightbig.webp',
+        //topLeft: './images/butterflielefttop.webp',
+        //rightCenter: './images/butterfliesrightbig.webp',
         //leftCenter: './images/butterfliesleftbig.webp', // decorativo lateral
 
         // el stack crece por contenido (quita heights/width)
@@ -137,7 +180,7 @@ const player = initAudioPlayer({
             // 3) botón (letrero ancho) con su onClick intacto
             {
               kind: "buttonImage",
-              src: "./images/mapbutton2.webp",
+              src: "./images/confirmbutton2.webp",
               alt: "Salón",
               variant: "wideText",
               onClick: () => window.open('https://maps.app.goo.gl/MocggLhSqwr6Aj3H7', '_blank')
@@ -146,60 +189,29 @@ const player = initAudioPlayer({
         }
       }
       ,
-      {
-        // sin fondo ni parallax
-        background: '',
-        leftCenter: './images/scheduleleft.webp',
-        rightCenter: './images/scheduleright.webp',
-
-        // el stack crece por contenido (quita heights/width)
-        stack3: {
-          gap: "8px",
-          items: [
-
-            // 2) letrero ancho (si este fuera cuadrado, usa variant: "square")
-            { kind: "image", src: "./images/program.webp", alt: "Cuadrada", variant: "square" },
-
-            // 3) botón (letrero ancho) con su onClick intacto
-
-          ]
-        }
-      }
-      ,
+      
       {
         // sin fondo ni parallax; dejamos las decoraciones absolutas
-        background: './images/bottombackground.webp',
+        // background: './images/bottombackground.webp',
         bottomCenter: './images/bottombackground.webp',
-        topLeft:'./images/butterflielefttop.webp',
-        topRight:'./images/butterflielefttop2.webp',
+        // topLeft: './images/butterflielefttop.webp',
+        // topRight: './images/butterflielefttop2.webp',
 
         stack3: {
           gap: "16px",               // un poco más de aire en el bloque final
           items: [
-            { kind: "html", html: "<div style='height:1vh'></div>" },
-            // 1) letrero superior
-            { kind: "image", src: "./images/dresscode2.webp", alt: "Cuadrada", variant: "square" },
-
-            // 2) countdown (escala a ~90% del ancho base del iPhone)
-
-            // 3) botón de confirmación (imagen ancha, centrada)
-            {
-              kind: "buttonImage",
-              src: "./images/confirmbutton2.webp",
-              alt: "Confirmar asistencia",
-              variant: "wideText",
-              onClick: () => guestModal.open()
-            },
+            
             {
               kind: "node",
               node: registry.countdown({
-                target: '2025-11-22T17:00:00-06:00',
+                target: '2026-04-25T16:00:00-06:00',
                 bgSrc: './images/counter.webp',
-                digitsPath: d => `./digits/${d}.png`,
+                //digitsPath: d => `./digits/${d}.png`,
                 zeroPad: { days: 2, hours: 2, minutes: 2, seconds: 2 },
                 showLabels: true,
                 // clave: atarlo a tu "device width"
                 scaleWidth: 'min(80vw, calc(var(--device-w, 430px) * 0.90))',
+                
               })
             },
             { kind: "html", html: "<div style='height:10vh'></div>" },
@@ -208,7 +220,7 @@ const player = initAudioPlayer({
       }
 
     ];
-    
+
 
 
     // Crea y monta todos los bloques
@@ -231,18 +243,7 @@ const player = initAudioPlayer({
 
 
     app.append(...nodes);
-    const gallery = createGallery({
-  images: [
-    './images/sofigal1.jpg',
-    './images/sofigal2.jpg',
-  ],
-  ratio: '16 / 9',
-  loop: true,
-  openOnClick: true,
-  captions: ['','','']
-});
-app.appendChild(gallery);
-
+    
 
     // Efectos de scroll
     // initReveal({ rootMargin: '0px 0px -12% 0px', once: false }); // reversa al hacer scroll back
