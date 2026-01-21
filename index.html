@@ -138,8 +138,8 @@
       ,
       {
         background: '',                         // sin fondo
-        //leftCenter: './images/dateleftbottom.webp', // decorativo lateral
-        //rightCenter: './images/dateright.webp',
+        leftCenter: './images/cloudscenterleft2.webp', // decorativo lateral
+        rightCenter: './images/cloudscenterright2.webp',
 
         stack3: {
           gap: "10px",
@@ -151,6 +151,33 @@
             //   variant: "principal"   // 👈 ocupará ~70% del alto
             // },
             { kind: "image", src: "./images/churchnew.webp", alt: "Cuadrada", variant: "square" },
+            {
+              kind: "buttonImage",
+              src: "./images/mapbutton2.webp",
+              alt: "Iglesia",
+              variant: "wideText",
+              onClick: () => window.open('https://maps.app.goo.gl/mBR7Jz2SZDgZwYuh7', '_blank')
+            }
+          ]
+        }
+      }
+      ,
+      ,
+      {
+        background: '',                         // sin fondo
+        rightCenter: './images/cloudscenterleft.webp', // decorativo lateral
+        leftCenter: './images/cloudscenterright.webp',
+
+        stack3: {
+          gap: "10px",
+          items: [
+            // {
+            //   kind: "image",
+            //   src: "./images/main.webp",
+            //   alt: "Imagen principal",
+            //   variant: "principal"   // 👈 ocupará ~70% del alto
+            // },
+            { kind: "image", src: "./images/partynew.webp", alt: "Cuadrada", variant: "square" },
             {
               kind: "buttonImage",
               src: "./images/mapbutton2.webp",
